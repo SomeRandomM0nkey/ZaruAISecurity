@@ -174,36 +174,36 @@ p {
     height: 70px;
 }
 
-/* Fixed Theme Toggle - Top Left */
-.theme-toggle-fixed {
-    position: fixed;
-    top: var(--spacing-md);
-    left: var(--spacing-md);
-    background: hsl(var(--surface));
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.theme-toggle {
+    background: none;
     border: 2px solid hsl(var(--border));
     cursor: pointer;
     padding: var(--spacing-xs);
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition);
     color: hsl(var(--text-primary));
-    z-index: 1001;
-    box-shadow: 0 4px 12px hsl(var(--shadow));
 }
 
-.theme-toggle-fixed:hover {
+.theme-toggle:hover {
     background-color: hsl(var(--primary-color));
     color: hsl(var(--text-light));
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px hsl(var(--shadow));
+    border-color: hsl(var(--primary-color));
+    transform: scale(1.05);
 }
 
-.theme-toggle-fixed i {
-    font-size: 1.2rem;
+.theme-toggle i {
+    font-size: 1.1rem;
 }
 
 .nav-logo {
@@ -320,11 +320,13 @@ p {
         display: flex;
     }
     
-    .theme-toggle-fixed {
-        width: 40px;
-        height: 40px;
-        top: var(--spacing-sm);
-        left: var(--spacing-sm);
+    .nav-left {
+        gap: var(--spacing-sm);
+    }
+    
+    .theme-toggle {
+        width: 35px;
+        height: 35px;
     }
 }
 
