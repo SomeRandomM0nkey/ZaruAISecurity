@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
         offset: 50,
         easing: 'ease-out-cubic'
     });
+    
+    // Initialize theme
+    initializeTheme();
 });
 
 // Mobile Navigation Toggle
@@ -355,6 +358,68 @@ const debouncedScrollHandler = debounce(function() {
 }, 10);
 
 window.addEventListener('scroll', debouncedScrollHandler);
+
+// Theme Toggle Functionality
+function initializeTheme() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.body;
+    
+    // Check for saved theme preference or default to light
+    const savedTheme = localStorage.getItem('zaruai-theme') || 'light';
+    setTheme(savedTheme);
+    
+    // Theme toggle event listener
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = body.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        
+        // Save theme preference
+        localStorage.setItem('zaruai-theme', newTheme);
+        
+        // Add a subtle animation to the toggle button
+        themeToggle.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+            themeToggle.style.transform = '';
+        }, 300);
+    });
+    
+    function setTheme(theme) {
+        body.setAttribute('data-theme', theme);
+        
+        // Update icon based on theme
+        if (theme === 'dark') {
+            themeIcon.className = 'fas fa-sun';
+            themeToggle.setAttribute('aria-label', 'Toggle light mode');
+        } else {
+            themeIcon.className = 'fas fa-moon';
+            themeToggle.setAttribute('aria-label', 'Toggle dark mode');
+        }
+        
+        // Update navbar background for theme
+        updateNavbarForTheme();
+    }
+    
+    function updateNavbarForTheme() {
+        const navbar = document.getElementById('navbar');
+        const theme = body.getAttribute('data-theme') || 'light';
+        
+        if (window.scrollY > 50) {
+            if (theme === 'dark') {
+                navbar.style.backgroundColor = 'hsl(220 15% 16% / 0.98)';
+            } else {
+                navbar.style.backgroundColor = 'hsl(0 0% 100% / 0.98)';
+            }
+        } else {
+            if (theme === 'dark') {
+                navbar.style.backgroundColor = 'hsl(220 15% 16% / 0.95)';
+            } else {
+                navbar.style.backgroundColor = 'hsl(0 0% 100% / 0.95)';
+            }
+        }
+    }
+}
 
 // Form auto-save to localStorage (optional)
 function saveFormData() {
