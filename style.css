@@ -174,10 +174,9 @@ p {
     height: 70px;
 }
 
-.nav-actions {
+.theme-toggle-item {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
 }
 
 .theme-toggle {
@@ -193,6 +192,7 @@ p {
     justify-content: center;
     transition: var(--transition);
     color: hsl(var(--text-primary));
+    margin-right: var(--spacing-md);
 }
 
 .theme-toggle:hover {
@@ -314,12 +314,17 @@ p {
         margin: var(--spacing-md) 0;
     }
     
-    .hamburger {
-        display: flex;
+    .theme-toggle-item {
+        order: -1;
+        margin-bottom: var(--spacing-lg);
     }
     
-    .nav-actions {
-        order: -1;
+    .theme-toggle {
+        margin-right: 0;
+    }
+    
+    .hamburger {
+        display: flex;
     }
 }
 
